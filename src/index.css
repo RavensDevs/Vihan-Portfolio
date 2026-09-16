@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #131313;
+    color: #e5e2e1;
+    overflow-x: hidden;
+  }
+
+  /* ── Light mode body ── */
+  html.light body {
+    background-color: #f4f6f9;
+    color: #1a1a2e;
+  }
+
+  /* ── Custom scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #131313;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #404753;
+    border-radius: 2px;
+  }
+  html.light ::-webkit-scrollbar-track {
+    background: #f4f6f9;
+  }
+  html.light ::-webkit-scrollbar-thumb {
+    background: #a5c8ff;
+  }
+
+  ::selection {
+    background-color: rgba(165, 200, 255, 0.3);
+  }
+
+  /* ── Fixed background image ── */
+  .fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  /* ── Dark overlay so content stays readable ── */
+  .fixed-bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 19, 19, 0.88);
+    z-index: 1;
+  }
+  html.light .fixed-bg-overlay {
+    background: rgba(244, 246, 249, 0.9);
+  }
+}
+
+@layer utilities {
+  /* ── Blueprint grid ── */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(#ffffff05 1px, transparent 1px),
+      linear-gradient(90deg, #ffffff05 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  html.light .blueprint-grid {
+    background-image:
+      linear-gradient(#00000008 1px, transparent 1px),
+      linear-gradient(90deg, #00000008 1px, transparent 1px);
+  }
+
+  /* ── Scroll-reveal animation ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Stagger delays ── */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+  .delay-500 { transition-delay: 500ms; }
+
+  /* ── Ticker animation ── */
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 35s linear infinite;
+  }
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── Gradient text ── */
+  .gradient-text {
+    background: linear-gradient(135deg, #a5c8ff 0%, #7ba7e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Glass card ── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(165, 200, 255, 0.08);
+    backdrop-filter: blur(8px);
+  }
+  html.light .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 95, 175, 0.15);
+  }
+}
