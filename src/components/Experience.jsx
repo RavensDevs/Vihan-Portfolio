@@ -31,24 +31,24 @@ function TimelineItem({ item, index, isDark }) {
       <div className={`glass-card p-6 mb-6 flex-1 group hover:border-primary/30 transition-all duration-300`}>
         <div className="flex flex-wrap justify-between items-start gap-2 mb-3">
           <div>
-            <h3 className={`text-base font-semibold group-hover:text-primary transition-colors duration-300 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
+            <h3 className={`text-xl font-semibold group-hover:text-primary transition-colors duration-300 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
               {item.role}
             </h3>
-            <p className={`text-sm font-medium ${isDark ? 'text-primary/80' : 'text-blue-600'}`}>
+            <p className={`text-base font-medium ${isDark ? 'text-primary/80' : 'text-blue-600'}`}>
               {item.organization}
             </p>
           </div>
           <div className="text-right">
-            <span className={`text-xs font-mono block ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
+            <span className={`text-sm font-mono block ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
               {item.period}
             </span>
-            <span className={`text-xs font-mono ${isDark ? 'text-on-surface-variant/60' : 'text-gray-400'}`}>
+            <span className={`text-sm font-mono ${isDark ? 'text-on-surface-variant/60' : 'text-gray-400'}`}>
               {item.location}
             </span>
           </div>
         </div>
 
-        <p className={`text-sm leading-relaxed mb-4 ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
+        <p className={`text-base leading-relaxed mb-4 ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
           {item.description}
         </p>
 
@@ -85,13 +85,13 @@ function AchievementCard({ achievement, index, isDark }) {
         <Award size={16} />
       </div>
       <div>
-        <h4 className={`text-sm font-semibold mb-0.5 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
+        <h4 className={`text-base font-semibold mb-0.5 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
           {achievement.title}
         </h4>
-        <p className={`text-xs font-mono mb-2 ${isDark ? 'text-tertiary/80' : 'text-amber-600'}`}>
+        <p className={`text-sm font-mono mb-2 ${isDark ? 'text-tertiary/80' : 'text-amber-600'}`}>
           {achievement.issuer} · {achievement.year}
         </p>
-        <p className={`text-xs leading-relaxed ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
+        <p className={`text-sm leading-relaxed ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
           {achievement.description}
         </p>
       </div>
@@ -105,10 +105,10 @@ export default function Experience() {
   const awardsHeaderRef = useScrollAnimation();
 
   return (
-    <section id="experience" className="pt-9 pb-10 px-6 md:px-16 max-w-[1280px] mx-auto" style={{ scrollMarginTop: '80px' }}>
+    <section id="experience" className="pt-8 pb-8 px-4 md:px-8 max-w-[1220px] mx-auto" style={{ scrollMarginTop: '80px' }}>
       {/* Header */}
-      <div ref={headerRef} className="reveal mb-12 flex items-center gap-6">
-        <h2 className={`text-xs font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+      <div ref={headerRef} className="reveal mb-8 flex items-center gap-6">
+        <h2 className={`text-sm font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
           Experience & Education
         </h2>
         <div className={`h-px flex-grow ${isDark ? 'bg-outline/20' : 'bg-gray-200'}`} />
@@ -125,7 +125,7 @@ export default function Experience() {
         {/* Awards sidebar */}
         <div>
           <div ref={awardsHeaderRef} className="reveal mb-6 flex items-center gap-4">
-            <span className={`text-xs font-semibold tracking-[0.25em] uppercase ${isDark ? 'text-tertiary' : 'text-amber-600'}`}>
+            <span className={`text-sm font-semibold tracking-[0.25em] uppercase ${isDark ? 'text-tertiary' : 'text-amber-600'}`}>
               Achievements
             </span>
             <div className={`h-px flex-grow ${isDark ? 'bg-outline/20' : 'bg-gray-200'}`} />

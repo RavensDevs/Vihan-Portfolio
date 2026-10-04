@@ -50,7 +50,7 @@ export default function Contact() {
   };
 
   const inputClass = (field) =>
-    `w-full px-4 py-3 text-sm bg-transparent border transition-all duration-200 outline-none font-mono ${
+    `w-full px-4 py-3 text-base bg-transparent border transition-all duration-200 outline-none font-mono ${
       errors[field]
         ? 'border-error text-error'
         : isDark
@@ -61,32 +61,32 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className={`pt-9 pb-10 border-t ${isDark ? 'border-outline/10' : 'border-gray-200'}`}
+      className={`pt-8 pb-8 border-t ${isDark ? 'border-outline/10' : 'border-gray-200'}`}
       style={{ scrollMarginTop: '80px' }}
     >
-      <div className="px-6 md:px-16 max-w-[1280px] mx-auto">
+      <div className="px-4 md:px-8 max-w-[1220px] mx-auto">
         {/* Header */}
-        <div ref={headerRef} className="reveal mb-10 flex items-center gap-6">
-          <h2 className={`text-xs font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+        <div ref={headerRef} className="reveal mb-8 flex items-center gap-6">
+          <h2 className={`text-sm font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
             Get In Touch
           </h2>
           <div className={`h-px flex-grow ${isDark ? 'bg-outline/20' : 'bg-gray-200'}`} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-14">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           {/* Contact info */}
-          <div ref={infoRef} className="reveal lg:col-span-2 space-y-8">
+          <div ref={infoRef} className="reveal lg:col-span-2 space-y-6">
             <div>
-              <h3 className={`text-2xl font-bold mb-3 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
+              <h3 className={`text-3xl font-bold mb-3 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
                 Let's Work Together
               </h3>
-              <p className={`text-sm leading-relaxed ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
+              <p className={`text-base leading-relaxed ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
                 Whether you're looking for a senior mechanical engineer, a design collaborator, or a
                 technical consultant — I'd love to hear from you. Let's build something exceptional.
               </p>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               {contactInfo.map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-start gap-4">
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${
@@ -95,15 +95,15 @@ export default function Contact() {
                     <Icon size={16} />
                   </div>
                   <div>
-                    <div className={`text-xs font-mono uppercase tracking-wider mb-0.5 ${isDark ? 'text-on-surface-variant' : 'text-gray-400'}`}>
+                    <div className={`text-sm font-mono uppercase tracking-wider mb-0.5 ${isDark ? 'text-on-surface-variant' : 'text-gray-400'}`}>
                       {label}
                     </div>
                     {href ? (
-                      <a href={href} className={`text-sm font-medium transition-colors duration-200 ${isDark ? 'text-on-surface hover:text-primary' : 'text-gray-700 hover:text-blue-600'}`}>
+                      <a href={href} className={`text-base font-medium transition-colors duration-200 ${isDark ? 'text-on-surface hover:text-primary' : 'text-gray-700 hover:text-blue-600'}`}>
                         {value}
                       </a>
                     ) : (
-                      <span className={`text-sm font-medium ${isDark ? 'text-on-surface' : 'text-gray-700'}`}>{value}</span>
+                      <span className={`text-base font-medium ${isDark ? 'text-on-surface' : 'text-gray-700'}`}>{value}</span>
                     )}
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className={`block text-xs font-mono tracking-wider uppercase mb-2 ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
+                    <label className={`block text-sm font-mono tracking-wider uppercase mb-2 ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
                       Full Name *
                     </label>
                     <input
@@ -163,7 +163,7 @@ export default function Contact() {
                     {errors.name && <p className="mt-1 text-xs text-error">{errors.name}</p>}
                   </div>
                   <div>
-                    <label className={`block text-xs font-mono tracking-wider uppercase mb-2 ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
+                    <label className={`block text-sm font-mono tracking-wider uppercase mb-2 ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
                       Email Address *
                     </label>
                     <input

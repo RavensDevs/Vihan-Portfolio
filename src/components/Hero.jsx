@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ChevronDown, GraduationCap } from 'lucide-react';
+import { ArrowRight, GraduationCap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { bio } from '../data/bio';
 
@@ -35,44 +36,73 @@ export default function Hero() {
     >
       {/* ── Background layers ── */}
       <div className="absolute inset-0 z-0">
-        {/* Blueprint grid */}
         <div className="absolute inset-0 blueprint-grid z-5" />
+        <motion.div
+          className={`absolute -left-24 top-24 h-72 w-72 rounded-full blur-3xl ${isDark ? 'bg-primary/10' : 'bg-blue-200/50'}`}
+          animate={{ x: [0, 20, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className={`absolute right-0 bottom-10 h-80 w-80 rounded-full blur-3xl ${isDark ? 'bg-cyan-400/10' : 'bg-sky-200/60'}`}
+          animate={{ x: [0, -30, 0], y: [0, -20, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        />
       </div>
 
       {/* ── Content ── */}
-      <div
+      <motion.div
         ref={headlineRef}
-        className="relative z-20 px-6 md:px-16 max-w-[1280px] mx-auto w-full"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="relative z-20 px-4 md:px-8 max-w-[1220px] mx-auto w-full"
       >
-        <div className="max-w-4xl space-y-6">
+        <div className="max-w-4xl space-y-5">
           {/* Eyebrow label */}
-          <div className="flex items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className="flex items-center gap-3"
+          >
             <span className="w-8 h-px bg-primary" />
-            <span className={`text-xs font-semibold tracking-[0.25em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+            <span className={`text-sm font-semibold tracking-[0.25em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
               {bio.tagline}
             </span>
-          </div>
+          </motion.div>
 
           {/* Main headline */}
-          <h1 className={`font-bold leading-tight ${isDark ? 'text-on-background' : 'text-gray-900'}`}
-            style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', letterSpacing: '0.02em' }}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.7, ease: 'easeOut' }}
+            className={`font-bold leading-[0.96] ${isDark ? 'text-on-background' : 'text-gray-900'}`}
+            style={{ fontSize: 'clamp(2.6rem, 6vw, 5.2rem)', letterSpacing: '0.02em' }}
           >
             {bio.fullName}
             <br />
             <span className="text-primary">— {bio.headline}</span>
-          </h1>
+          </motion.h1>
 
           {/* Sub-headline */}
-          <p
-            className={`text-lg leading-relaxed max-w-2xl ${
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.7 }}
+            className={`text-xl leading-relaxed max-w-2xl ${
               isDark ? 'text-on-surface-variant' : 'text-gray-600'
             }`}
           >
             {bio.subtitle}
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 pt-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.7 }}
+            className="flex flex-wrap gap-4 pt-4"
+          >
             <button
               onClick={() => navigate('/projects')}
               className="flex items-center gap-2 px-8 py-4 bg-[#1E90FF] text-white text-xs font-semibold tracking-widest uppercase hover:brightness-110 hover:gap-3 transition-all duration-300 shadow-lg shadow-blue-500/20"
@@ -100,10 +130,15 @@ export default function Hero() {
             >
               GET IN TOUCH
             </button>
-          </div>
+          </motion.div>
 
           {/* Stats row */}
-          <div className="flex gap-8 pt-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.7 }}
+            className="flex gap-8 pt-4"
+          >
             {bio.stats.slice(0, 3).map((stat) => (
               <div key={stat.label}>
                 <div className={`text-2xl font-bold ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
@@ -114,9 +149,9 @@ export default function Hero() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
     </section>
   );

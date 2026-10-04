@@ -24,10 +24,10 @@ function SkillBar({ name, level, isDark }) {
   }, []);
 
   return (
-    <div ref={ref} className="space-y-1.5">
+    <div ref={ref} className="space-y-2">
       <div className="flex justify-between items-center">
-        <span className={`text-sm font-medium ${isDark ? 'text-on-surface' : 'text-gray-700'}`}>{name}</span>
-        <span className={`text-xs font-mono ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>{level}%</span>
+      <span className={`text-base font-medium ${isDark ? 'text-on-surface' : 'text-gray-700'}`}>{name}</span>
+      <span className={`text-sm font-mono ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>{level}%</span>
       </div>
       <div className={`h-1 rounded-full overflow-hidden ${isDark ? 'bg-surface-container-high' : 'bg-gray-200'}`}>
         <div
@@ -48,7 +48,7 @@ function SkillGroup({ group, delay, isDark }) {
       className="reveal glass-card p-6 space-y-5"
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <h3 className={`text-xs font-semibold tracking-[0.2em] uppercase mb-6 ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+      <h3 className={`text-sm font-semibold tracking-[0.2em] uppercase mb-6 ${isDark ? 'text-primary' : 'text-blue-700'}`}>
         {group.category}
       </h3>
       {group.skills.map((skill) => (
@@ -66,10 +66,10 @@ export default function Skills() {
   const tickerItems = [...softwareTools, ...softwareTools];
 
   return (
-    <section id="skills" className="pt-10 pb-8 px-6 md:px-16 max-w-[1280px] mx-auto">
+    <section id="skills" className="pt-8 pb-6 px-4 md:px-8 max-w-[1220px] mx-auto">
       {/* Section header */}
-      <div ref={headerRef} className="reveal mb-12 flex items-center gap-6">
-        <h2 className={`text-xs font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+      <div ref={headerRef} className="reveal mb-8 flex items-center gap-6">
+        <h2 className={`text-sm font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
           Technical Skills
         </h2>
         <div className={`h-px flex-grow ${isDark ? 'bg-outline/20' : 'bg-gray-200'}`} />

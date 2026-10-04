@@ -47,7 +47,7 @@ export default function Footer() {
 
   return (
     <footer className={`border-t ${isDark ? 'bg-background border-outline/20' : 'bg-white border-gray-200'}`}>
-      <div className="px-6 md:px-16 max-w-[1280px] mx-auto py-12">
+      <div className="px-4 md:px-8 max-w-[1220px] mx-auto py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-outline/10">
           {/* Brand column */}
           <div className="space-y-4">

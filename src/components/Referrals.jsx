@@ -16,7 +16,7 @@ function TestimonialCard({ referral, index }) {
           ? 'border-[rgba(176,176,176,0.2)] hover:bg-surface-container-low'
           : 'border-gray-200 hover:bg-gray-50'
       }`}
-      style={{ transitionDelay: `${(index % 2) * 100}ms` }}
+      style={{ transitionDelay: `${(index % 6) * 100}ms` }}
     >
       <blockquote
         className={`italic text-lg leading-relaxed mb-6 ${
@@ -79,7 +79,7 @@ export default function Referrals() {
   }`;
 
   return (
-    <main className="max-w-[1280px] mx-auto px-5 md:px-16 pb-12 pt-28">
+    <main className="max-w-[1220px] mx-auto px-4 md:px-8 pb-12 pt-28">
       {/* Header */}
       <section ref={headerRef} className="reveal pt-10 pb-6">
         <div

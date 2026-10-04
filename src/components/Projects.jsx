@@ -7,13 +7,11 @@ import ProjectModal from './ProjectModal';
 function ProjectCard({ project, index, onSelect }) {
   const { isDark } = useTheme();
   const ref = useScrollAnimation({ threshold: 0.1 });
-  const isEven = index % 2 === 0;
-
   return (
     <div
       ref={ref}
-      className="reveal"
-      style={{ transitionDelay: `${index * 80}ms` }}
+      className="reveal project-card-reveal"
+      style={{ transitionDelay: `${(index % 6) * 140}ms` }}
     >
       <div
         className={`group cursor-pointer border transition-all duration-300 hover:-translate-y-1 overflow-hidden ${
@@ -23,7 +21,7 @@ function ProjectCard({ project, index, onSelect }) {
         }`}
         onClick={() => onSelect(project)}
       >
-        <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+        <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
           {/* Image */}
           <div className={`w-full md:w-1/2 h-64 md:h-80 shrink-0 overflow-hidden ${isDark ? 'bg-surface-container' : 'bg-gray-100'}`}>
             <img
@@ -83,7 +81,7 @@ export default function Projects() {
 
   return (
     <>
-      <main className="max-w-[1280px] mx-auto px-6 md:px-16 py-20 min-h-screen pt-28">
+      <main className="max-w-[1220px] mx-auto px-4 md:px-8 py-20 min-h-screen pt-28">
         {/* Filter header */}
         <div ref={headerRef} className="reveal flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>

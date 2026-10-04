@@ -39,11 +39,11 @@ export default function Expertise() {
   return (
     <section
       id="expertise"
-      className={`py-10 px-6 md:px-16 max-w-[1280px] mx-auto`}
+      className={`py-8 px-4 md:px-8 max-w-[1220px] mx-auto`}
     >
       {/* Section header */}
-      <div ref={sectionRef} className="reveal mb-12 flex items-center gap-6">
-        <h2 className={`text-xs font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+      <div ref={sectionRef} className="reveal mb-8 flex items-center gap-6">
+        <h2 className={`text-sm font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
           Core Expertise
         </h2>
         <div className={`h-px flex-grow ${isDark ? 'bg-outline/20' : 'bg-gray-200'}`} />
@@ -65,7 +65,7 @@ function ExpertiseCard({ item, index, isDark }) {
   return (
     <div
       ref={ref}
-      className={`reveal delay-${(index + 1) * 100} group p-10 border-r border-b transition-all duration-300 cursor-default ${
+      className={`reveal delay-${(index + 1) * 100} group p-8 border-r border-b transition-all duration-300 cursor-default ${
         isDark
           ? 'border-outline/10 hover:bg-surface-container-low'
           : 'border-gray-200 hover:bg-blue-50/60'
@@ -75,10 +75,10 @@ function ExpertiseCard({ item, index, isDark }) {
       <div className={`mb-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1`}>
         {iconMap[item.icon]}
       </div>
-      <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
+      <h3 className={`text-xl font-semibold mb-2 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
         {item.title}
       </h3>
-      <p className={`text-sm leading-relaxed ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
+      <p className={`text-base leading-relaxed ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
         {item.description}
       </p>
     </div>

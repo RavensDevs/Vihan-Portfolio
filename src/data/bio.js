@@ -8,8 +8,8 @@ export const bio = {
   fullName: "Vihan S Hettiarachchi",
   brandName: "Vihan",           // shown in navbar & footer
   brandHighlight: "Hetti",           // the part that gets the accent color
-  headline: "DESIGN ENTHUSIAST",     // hero title after your name
-  tagline: "Mechanical Engineer ing ",
+  headline: "DESIGN ENTHUSIAST",
+  tagline: "Mechanical Engineering",
 
   // ── Hero subtitle ──
   subtitle:

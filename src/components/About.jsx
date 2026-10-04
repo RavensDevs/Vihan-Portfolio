@@ -12,22 +12,22 @@ export default function About() {
   return (
     <section
       id="about"
-      className={`py-10 border-y ${
+      className={`py-8 border-y ${
         isDark
           ? 'border-outline/10'
           : 'border-gray-200'
       }`}
     >
-      <div className="px-6 md:px-16 max-w-[1280px] mx-auto">
+      <div className="px-4 md:px-8 max-w-[1220px] mx-auto">
         {/* Header */}
-        <div ref={headerRef} className="reveal mb-12 flex items-center gap-6">
+        <div ref={headerRef} className="reveal mb-8 flex items-center gap-6">
           <h2 className={`text-xs font-semibold tracking-[0.3em] uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
             About
           </h2>
           <div className={`h-px flex-grow ${isDark ? 'bg-outline/20' : 'bg-gray-200'}`} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           {/* Profile photo */}
           <div ref={photoRef} className="reveal md:col-span-3 flex justify-start">
             <div className="relative w-52 h-52">
@@ -52,10 +52,10 @@ export default function About() {
           </div>
 
           {/* Bio */}
-          <div ref={bioRef} className="reveal delay-200 md:col-span-5 space-y-5">
+          <div ref={bioRef} className="reveal delay-200 md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <span className="w-8 h-px bg-primary" />
-              <span className={`text-xs font-semibold tracking-widest uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
+              <span className={`text-sm font-semibold tracking-widest uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
                 Biography
               </span>
             </div>
