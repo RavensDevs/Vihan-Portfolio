@@ -14,7 +14,7 @@ export const projectsData = [
     id: "pneumatic-press-system",
     title: "Pneumatic Assembly Press",
     period: "Completed",
-    duration: "—",
+    duration: "3 Months",
     description:
       "Designed and implemented a pneumatic press system for high-rate plastic component assembly.",
     detailDescription:

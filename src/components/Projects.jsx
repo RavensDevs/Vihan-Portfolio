@@ -1,29 +1,70 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { projectsData, projectCategories } from '../data/projects';
 import ProjectModal from './ProjectModal';
 
-function ProjectCard({ project, index, onSelect }) {
+function ProjectCard({ project, activeProjectId, setActiveProjectId, onSelect }) {
   const { isDark } = useTheme();
   const ref = useScrollAnimation({ threshold: 0.1 });
+
+  useEffect(() => {
+    const card = ref.current;
+    if (!card) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setActiveProjectId(project.id);
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [project.id, ref, setActiveProjectId]);
+
   return (
     <div
       ref={ref}
-      className="reveal project-card-reveal"
-      style={{ transitionDelay: `${(index % 6) * 140}ms` }}
+      className="reveal project-card-reveal grid grid-cols-[84px_minmax(0,1fr)] md:grid-cols-[30%_70%] items-stretch"
     >
+      <div className="relative flex justify-end items-center pr-5 md:pr-8">
+        <div className={`text-right font-mono uppercase ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
+          <span className="block text-xs md:text-sm font-semibold">{project.period}</span>
+          <span className="block text-[10px] md:text-xs opacity-70 normal-case">
+            Duration: {project.duration === '—' ? 'Not specified' : project.duration}
+          </span>
+        </div>
+        <span
+          className={`absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 z-10 w-3 h-3 rounded-full border-[3px] ${
+            project.id === activeProjectId
+              ? 'bg-primary border-background shadow-[0_0_10px_rgba(39,146,255,0.5)]'
+              : isDark
+              ? 'bg-outline/40 border-background'
+              : 'bg-gray-400 border-white'
+          }`}
+        />
+      </div>
+
+      <div className="pl-7 md:pl-10">
       <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            onSelect(project);
+          }
+        }}
         className={`group cursor-pointer border transition-all duration-300 hover:-translate-y-1 overflow-hidden ${
           isDark
-            ? 'border-outline/10 hover:border-primary/40'
-            : 'border-gray-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-100/40'
+            ? 'bg-surface-container-low border-outline/10 hover:border-primary/40'
+            : 'bg-white border-gray-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-100/40'
         }`}
         onClick={() => onSelect(project)}
       >
-        <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-          {/* Image */}
-          <div className={`w-full md:w-1/2 h-64 md:h-80 shrink-0 overflow-hidden ${isDark ? 'bg-surface-container' : 'bg-gray-100'}`}>
+        <div className="flex flex-col sm:flex-row">
+          <div className={`w-full h-44 sm:w-2/5 sm:h-auto min-h-44 shrink-0 overflow-hidden ${isDark ? 'bg-surface-container' : 'bg-gray-100'}`}>
             <img
               src={project.image}
               alt={project.title}
@@ -31,22 +72,14 @@ function ProjectCard({ project, index, onSelect }) {
             />
           </div>
 
-          {/* Text content */}
-          <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
-            {/* Period badge */}
-            <span className={`inline-block text-xs font-mono uppercase tracking-wider mb-3 ${isDark ? 'text-primary' : 'text-blue-600'}`}>
-              {project.period}
-              <span className="opacity-60 text-[10px] lowercase ml-2">({project.duration})</span>
-            </span>
-
-            <h3 className={`text-2xl font-bold leading-snug mb-3 group-hover:text-primary transition-colors duration-300 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
+          <div className="flex-1 p-5 md:p-7">
+            <h3 className={`text-xl font-bold leading-snug mb-3 group-hover:text-primary transition-colors duration-300 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
               {project.title}
             </h3>
             <p className={`text-sm leading-relaxed mb-5 ${isDark ? 'text-on-surface-variant' : 'text-gray-600'}`}>
               {project.description}
             </p>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <span
@@ -64,6 +97,7 @@ function ProjectCard({ project, index, onSelect }) {
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 }
@@ -71,6 +105,7 @@ function ProjectCard({ project, index, onSelect }) {
 export default function Projects() {
   const { isDark } = useTheme();
   const [activeFilter, setActiveFilter] = useState('ALL');
+  const [activeProjectId, setActiveProjectId] = useState(projectsData[0]?.id);
   const [selectedProject, setSelectedProject] = useState(null);
   const headerRef = useScrollAnimation();
 
@@ -78,6 +113,10 @@ export default function Projects() {
     activeFilter === 'ALL'
       ? projectsData
       : projectsData.filter((p) => p.category === activeFilter);
+
+  useEffect(() => {
+    setActiveProjectId(filtered[0]?.id);
+  }, [activeFilter]);
 
   return (
     <>
@@ -87,11 +126,11 @@ export default function Projects() {
           <div>
             <h1
               className={`font-bold mb-1 ${isDark ? 'text-on-background' : 'text-gray-900'}`}
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', letterSpacing: '0.05em', lineHeight: 1.1 }}
+              style={{ fontSize: 'clamp(2rem, 4.5vw, 2.9rem)', letterSpacing: '0.05em', lineHeight: 1.1 }}
             >
               Timeline
             </h1>
-            <p className={`text-lg opacity-60 ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
+            <p className={`text-base opacity-60 ${isDark ? 'text-on-surface-variant' : 'text-gray-500'}`}>
               A chronological record of technical milestones and industrial contributions.
             </p>
           </div>
@@ -119,12 +158,14 @@ export default function Projects() {
         </div>
 
         {/* Project cards */}
-        <div className="space-y-10">
-          {filtered.map((project, i) => (
+        <div className="relative mx-auto w-full max-w-6xl space-y-12 md:space-y-16 md:-translate-x-3 lg:-translate-x-24">
+          <div className="absolute top-0 bottom-0 left-[84px] md:left-[30%] w-px bg-outline/20" />
+          {filtered.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
-              index={i}
+              activeProjectId={activeProjectId}
+              setActiveProjectId={setActiveProjectId}
               onSelect={setSelectedProject}
             />
           ))}

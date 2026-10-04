@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { X, Download, Cpu, Settings, Code, Factory } from 'lucide-react';
+import { X, Cpu, Settings, Code, Factory } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const techIconMap = {
@@ -88,7 +88,7 @@ export default function ProjectModal({ project, onClose }) {
               </span>
               <h2
                 className={`font-bold mb-4 ${isDark ? 'text-on-background' : 'text-gray-900'}`}
-                style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', lineHeight: 1.15 }}
+                style={{ fontSize: 'clamp(1.35rem, 3.5vw, 2.2rem)', lineHeight: 1.15 }}
               >
                 {project.title}
               </h2>
@@ -164,13 +164,6 @@ export default function ProjectModal({ project, onClose }) {
               </ul>
             </section>
 
-            {/* CTA */}
-            <div className="pt-4">
-              <button className="w-full flex items-center justify-center gap-3 py-4 bg-[#FF8C00] text-black text-xs font-semibold tracking-widest uppercase hover:bg-[#e67e00] transition-colors duration-200">
-                REQUEST TECHNICAL SPECIFICATIONS
-                <Download size={16} />
-              </button>
-            </div>
           </div>
         </div>
       </div>

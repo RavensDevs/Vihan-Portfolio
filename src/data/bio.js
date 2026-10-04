@@ -3,9 +3,14 @@
 // ────────────────────────────────────────────
 import profilePhoto from "../pictures/profile/profile.jpg";
 
+const firstName = "Vihan S";
+const secondName = "Hettiarachchi";
+
 export const bio = {
   // ── Identity ──
-  fullName: "Vihan S Hettiarachchi",
+  firstName,
+  secondName,
+  fullName: `${firstName} ${secondName}`,
   brandName: "Vihan",           // shown in navbar & footer
   brandHighlight: "Hetti",           // the part that gets the accent color
   headline: "DESIGN ENTHUSIAST",

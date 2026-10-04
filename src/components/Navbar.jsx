@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Download, GraduationCap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 import { bio } from '../data/bio';
 
 const navLinks = [
@@ -12,6 +13,7 @@ const navLinks = [
 
 export default function Navbar() {
   const { isDark } = useTheme();
+  const scrollTo = useSmoothScroll();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -36,19 +38,24 @@ export default function Navbar() {
 
   const handleNavClick = (to) => {
     setMenuOpen(false);
+    if (to === '/' && location.pathname === '/') {
+      scrollTo(0, { immediate: true });
+      return;
+    }
+
     // If it's a hash link, handle cross-page navigation
     if (to.startsWith('/#')) {
       const id = to.replace('/#', '');
       if (location.pathname === '/') {
         // Already on home page — just scroll
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) scrollTo(el);
       } else {
         // Navigate to home page first, then scroll after mount
         navigate('/');
         setTimeout(() => {
           const el = document.getElementById(id);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          if (el) scrollTo(el);
         }, 100);
       }
     }

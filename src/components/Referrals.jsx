@@ -4,9 +4,19 @@ import { useTheme } from '../context/ThemeContext';
 import { referralsData } from '../data/referrals';
 import { Send } from 'lucide-react';
 
+function getInitials(name) {
+  const nameParts = name.trim().split(/\s+/).filter(Boolean);
+  const titles = ['Dr.', 'Mr.', 'Mrs.', 'Ms.', 'Prof.'];
+  if (titles.includes(nameParts[0])) nameParts.shift();
+
+  if (nameParts.length === 0) return '';
+  return `${nameParts[0][0]}${nameParts.length > 1 ? nameParts[nameParts.length - 1][0] : ''}`.toUpperCase();
+}
+
 function TestimonialCard({ referral, index }) {
   const { isDark } = useTheme();
   const ref = useScrollAnimation({ threshold: 0.1 });
+  const [imageFailed, setImageFailed] = useState(false);
 
   return (
     <div
@@ -26,13 +36,27 @@ function TestimonialCard({ referral, index }) {
         "{referral.quote}"
       </blockquote>
       <div className="flex items-center gap-5">
-        <img
-          src={referral.image}
-          alt={referral.name}
-          className={`w-12 h-12 rounded-full object-cover border ${
-            isDark ? 'border-[rgba(176,176,176,0.2)]' : 'border-gray-200'
-          }`}
-        />
+        {referral.image && !imageFailed ? (
+          <img
+            src={referral.image}
+            alt={referral.name}
+            onError={() => setImageFailed(true)}
+            className={`w-12 h-12 rounded-full object-cover border ${
+              isDark ? 'border-[rgba(176,176,176,0.2)]' : 'border-gray-200'
+            }`}
+          />
+        ) : (
+          <div
+            aria-label={`${referral.name} initials`}
+            className={`w-12 h-12 shrink-0 rounded-full border flex items-center justify-center text-sm font-semibold ${
+              isDark
+                ? 'border-[rgba(176,176,176,0.2)] bg-surface-container text-primary'
+                : 'border-gray-200 bg-gray-100 text-blue-700'
+            }`}
+          >
+            {getInitials(referral.name)}
+          </div>
+        )}
         <div>
           <div
             className={`text-sm font-bold ${
@@ -94,7 +118,7 @@ export default function Referrals() {
             isDark ? 'text-on-background' : 'text-gray-900'
           }`}
           style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
             letterSpacing: '0.05em',
             lineHeight: 1.1,
           }}

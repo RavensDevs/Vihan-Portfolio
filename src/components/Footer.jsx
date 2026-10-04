@@ -1,6 +1,7 @@
 import { Linkedin, Github, FileText, ArrowUp } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { bio } from '../data/bio';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -20,10 +21,11 @@ const navLinks = [
 
 export default function Footer() {
   const { isDark } = useTheme();
+  const scrollTo = useSmoothScroll();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollTop = () => scrollTo(0);
 
   const handleNavClick = (e, href) => {
     if (href.startsWith('/#')) {
@@ -33,13 +35,13 @@ export default function Footer() {
       if (location.pathname === '/') {
         // Already on home page — just scroll
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) scrollTo(el);
       } else {
         // Navigate to home page first, then scroll after mount
         navigate('/');
         setTimeout(() => {
           const el = document.getElementById(id);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          if (el) scrollTo(el);
         }, 100);
       }
     }

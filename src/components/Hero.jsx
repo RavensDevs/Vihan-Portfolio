@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, GraduationCap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 import { bio } from '../data/bio';
 
 export default function Hero() {
   const { isDark } = useTheme();
+  const scrollToTarget = useSmoothScroll();
   const navigate = useNavigate();
   const headlineRef = useRef(null);
-
 
   // Headline entrance animation
   useEffect(() => {
@@ -26,13 +27,14 @@ export default function Hero() {
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById(id);
+    if (target) scrollToTarget(target);
   };
 
   return (
     <section
       id="home"
-      className="relative h-screen flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden py-28"
     >
       {/* ── Background layers ── */}
       <div className="absolute inset-0 z-0">
@@ -57,7 +59,8 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="relative z-20 px-4 md:px-8 max-w-[1220px] mx-auto w-full"
       >
-        <div className="max-w-4xl space-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_320px] gap-0 items-center">
+          <div className="max-w-4xl space-y-5">
           {/* Eyebrow label */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -77,11 +80,13 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.7, ease: 'easeOut' }}
             className={`font-bold leading-[0.96] ${isDark ? 'text-on-background' : 'text-gray-900'}`}
-            style={{ fontSize: 'clamp(2.6rem, 6vw, 5.2rem)', letterSpacing: '0.02em' }}
+            style={{ fontSize: 'clamp(2.3rem, 5vw, 4.6rem)', letterSpacing: '0.02em' }}
           >
-            {bio.fullName}
+            {bio.firstName}
             <br />
-            <span className="text-primary">— {bio.headline}</span>
+            {bio.secondName}
+            <br />
+            <span className="text-primary text-[0.6em]">{bio.headline}</span>
           </motion.h1>
 
           {/* Sub-headline */}
@@ -149,6 +154,32 @@ export default function Hero() {
                 </div>
               </div>
             ))}
+          </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.35, duration: 0.8, ease: 'easeOut' }}
+            className="flex justify-center md:justify-start md:-translate-x-24 lg:-translate-x-28"
+          >
+            <div className="relative w-48 h-60 md:w-72 md:h-88 lg:w-80 lg:h-96">
+              <div
+                className="absolute -inset-3 rounded-[999px] border border-primary/25"
+                style={{ animation: 'spin 20s linear infinite' }}
+              />
+              <div
+                className="absolute -inset-6 rounded-[999px] border border-primary/10"
+                style={{ animation: 'spin 30s linear infinite reverse' }}
+              />
+              <div className="w-full h-full rounded-[999px] overflow-hidden border-2 border-outline/20 grayscale hover:grayscale-0 transition-all duration-700 shadow-xl">
+                <img
+                  src={bio.profilePhoto}
+                  alt={`${bio.fullName} — Mechanical Engineer`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </motion.div>

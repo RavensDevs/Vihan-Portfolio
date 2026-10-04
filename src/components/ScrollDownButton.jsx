@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useSmoothScroll } from '../context/SmoothScrollContext';
 
 /**
  * A floating scroll-down button that stays visible while scrolling
@@ -8,6 +9,7 @@ import { useTheme } from '../context/ThemeContext';
  */
 export default function ScrollDownButton() {
   const { isDark } = useTheme();
+  const scrollTo = useSmoothScroll();
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function ScrollDownButton() {
   }, []);
 
   const scrollDown = () => {
-    window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+    scrollTo(window.scrollY + window.innerHeight * 0.8);
   };
 
   return (

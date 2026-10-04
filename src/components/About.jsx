@@ -4,10 +4,9 @@ import { bio } from '../data/bio';
 
 export default function About() {
   const { isDark } = useTheme();
-  const headerRef = useScrollAnimation();
-  const photoRef = useScrollAnimation();
-  const bioRef = useScrollAnimation();
-  const statsRef = useScrollAnimation();
+  const headerRef = useScrollAnimation({ threshold: 0.1 });
+  const bioRef = useScrollAnimation({ threshold: 0.1 });
+  const statsRef = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <section
@@ -28,31 +27,9 @@ export default function About() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-          {/* Profile photo */}
-          <div ref={photoRef} className="reveal md:col-span-3 flex justify-start">
-            <div className="relative w-52 h-52">
-              {/* Spinning ring */}
-              <div
-                className="absolute -inset-3 rounded-full border border-primary/25"
-                style={{ animation: 'spin 20s linear infinite' }}
-              />
-              <div
-                className="absolute -inset-6 rounded-full border border-primary/10"
-                style={{ animation: 'spin 30s linear infinite reverse' }}
-              />
-              {/* Photo */}
-              <div className="w-full h-full rounded-full overflow-hidden border-2 border-outline/20 grayscale hover:grayscale-0 transition-all duration-700 shadow-xl">
-                <img
-                  src={bio.profilePhoto}
-                  alt={`${bio.fullName} — Mechanical Engineer`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Bio */}
-          <div ref={bioRef} className="reveal delay-200 md:col-span-5 space-y-4">
+          <div ref={bioRef} className="reveal delay-100 md:col-span-7 space-y-4">
             <div className="flex items-center gap-3">
               <span className="w-8 h-px bg-primary" />
               <span className={`text-sm font-semibold tracking-widest uppercase ${isDark ? 'text-primary' : 'text-blue-700'}`}>
@@ -86,11 +63,11 @@ export default function About() {
           </div>
 
           {/* Stats */}
-          <div ref={statsRef} className="reveal delay-300 md:col-span-4 grid grid-cols-2 gap-6">
+          <div ref={statsRef} className="reveal delay-200 md:col-span-5 grid grid-cols-2 gap-6">
             {bio.stats.map((s) => (
               <div
                 key={s.label}
-                className={`glass-card p-5 group hover:border-primary/30 transition-all duration-300`}
+                className={`glass-card-static p-5 group hover:border-primary/30 transition-all duration-300`}
               >
                 <div className={`text-3xl font-bold tracking-tight mb-1 group-hover:text-primary transition-colors duration-300 ${isDark ? 'text-on-background' : 'text-gray-900'}`}>
                   {s.value}

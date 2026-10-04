@@ -13,6 +13,12 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     font-family: 'Inter', sans-serif;
     background-color: #131313;
@@ -79,7 +85,7 @@
 @layer utilities {
   /* ── Typography scale refresh ── */
   html {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   body {
@@ -87,14 +93,14 @@
     line-height: 1.7;
   }
 
-  .text-xs { font-size: 0.76rem; }
-  .text-sm { font-size: 0.92rem; }
-  .text-base { font-size: 1.04rem; }
-  .text-lg { font-size: 1.2rem; }
-  .text-xl { font-size: 1.45rem; }
-  .text-2xl { font-size: clamp(1.65rem, 2vw, 2.25rem); }
-  .text-3xl { font-size: clamp(2.05rem, 4vw, 2.9rem); }
-  .text-4xl { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+  .text-xs { font-size: 0.68rem; }
+  .text-sm { font-size: 0.84rem; }
+  .text-base { font-size: 0.94rem; }
+  .text-lg { font-size: 1.08rem; }
+  .text-xl { font-size: 1.3rem; }
+  .text-2xl { font-size: clamp(1.45rem, 1.8vw, 2rem); }
+  .text-3xl { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+  .text-4xl { font-size: clamp(2.2rem, 4.5vw, 3.1rem); }
 
   /* ── Blueprint grid ── */
   .blueprint-grid {
@@ -112,16 +118,14 @@
   /* ── Scroll-reveal animation ── */
   .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transform: translateY(16px);
+    transition:
+      opacity 0.55s ease-out,
+      transform 0.55s ease-out;
   }
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .project-card-reveal {
-    transition-duration: 0.85s;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -169,7 +173,15 @@
     border: 1px solid rgba(165, 200, 255, 0.08);
     backdrop-filter: blur(8px);
   }
+  .glass-card-static {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(165, 200, 255, 0.08);
+  }
   html.light .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 95, 175, 0.15);
+  }
+  html.light .glass-card-static {
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(0, 95, 175, 0.15);
   }
