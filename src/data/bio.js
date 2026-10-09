@@ -18,13 +18,13 @@ export const bio = {
 
   // ── Hero subtitle ──
   subtitle:
-    "Specializing in Design for Manufacturing, Automation, and Sustainable Engineering. Delivering structural integrity through technical precision and purposeful design.",
+    "Focused on Design for Manufacturing, Automation, and Sustainable Engineering. Bridging analytical precision with practical implementation to develop efficient, reliable, and purposeful engineering solutions.",
 
   // ── About / Biography ──
   bioTitle: "Engineering with Purpose",
   bioText: [
-    "I bridge the gap between abstract theoretical engineering and tangible physical production. With over a decade of experience across aerospace and robotics, my methodology centers on structural logic and long-term durability.",
-    "I believe that true mechanical elegance is found in the removal of the unnecessary — every design decision must justify its existence through function, cost, or longevity. My approach marries analytical rigour with practical manufacturing knowledge to deliver systems that perform under real-world conditions.",
+    "I bridge the gap between engineering theory and practical implementation, with a focus on mechanical design, automation, and mechatronic systems. My interests span the entire engineering process — from conceptual development and simulation to prototyping, manufacturing, and real-world validation.",
+    "I believe effective engineering lies in finding simple, practical solutions to complex problems. My approach combines analytical thinking with hands-on experimentation, prioritizing functionality, manufacturability, cost-effectiveness, and reliability. I aim not just to design systems that work in theory, but to build solutions that deliver value in practice.",
   ],
   competencies: ["DFM / DFA", "FEA / CFD", "Prototyping"],
 
