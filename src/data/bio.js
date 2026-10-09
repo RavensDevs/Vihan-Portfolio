@@ -34,7 +34,7 @@ export const bio = {
   stats: [
     { value: "2+", label: "Years Experience" },
     { value: "5+", label: "Projects Delivered" },
-    { value: "2nd Year Undergraduate", label: "Mechanical Engineering" }
+    { value: "Undergraduate", label: "Mechanical Engineering" }
     //{ value: "3", label: "Awards Won" },
   ],
 
