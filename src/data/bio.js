@@ -26,7 +26,7 @@ export const bio = {
     "I bridge the gap between abstract theoretical engineering and tangible physical production. With over a decade of experience across aerospace and robotics, my methodology centers on structural logic and long-term durability.",
     "I believe that true mechanical elegance is found in the removal of the unnecessary — every design decision must justify its existence through function, cost, or longevity. My approach marries analytical rigour with practical manufacturing knowledge to deliver systems that perform under real-world conditions.",
   ],
-  competencies: ["DFM / DFA", "FEA / CFD", "Robotics", "Aerospace", "Composites"],
+  competencies: ["DFM / DFA", "FEA / CFD", "Prototyping"],
 
   // ── Profile photo ──
   profilePhoto:profilePhoto,
@@ -46,7 +46,7 @@ export const bio = {
   // ── Social links ──
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/vihan-hettiarachchi-7a27b22b7/",
-    github: "https://github.com",
+    //github: "https://github.com",
     resume: "/cv.pdf",   // path to downloadable CV file
   },
 
