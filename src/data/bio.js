@@ -1,7 +1,7 @@
 // ────────────────────────────────────────────
 //  bio.js — Edit ALL your personal info here
 // ────────────────────────────────────────────
-import profilePhoto from "../pictures/profile/profile.jpg";
+import profilePhoto from "../pictures/profile/profile1.jpg";
 
 const firstName = "Vihan S";
 const secondName = "Hettiarachchi";
