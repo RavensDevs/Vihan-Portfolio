@@ -32,27 +32,27 @@ export const bio = {
   profilePhoto:profilePhoto,
   // ── Stats ──
   stats: [
-    { value: "10+", label: "Years Experience" },
-    { value: "50+", label: "Projects Delivered" },
-    { value: "CEng", label: "Chartered Engineer" },
-    { value: "3", label: "Awards Won" },
+    { value: "2+", label: "Years Experience" },
+    { value: "5+", label: "Projects Delivered" },
+    { value: "2nd Year Undergraduate", label: "Mechanical Engineering" }
+    //{ value: "3", label: "Awards Won" },
   ],
 
   // ── Contact info ──
-  email: "vihan@example.com",
-  phone: "+94 71 234 5678",
+  email: "vihanhett@gmail.com",
+  phone: "+94 70 260 7679",
   location: "Colombo, Sri Lanka",
 
   // ── Social links ──
   socialLinks: {
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/vihan-hettiarachchi-7a27b22b7/",
     github: "https://github.com",
     resume: "/cv.pdf",   // path to downloadable CV file
   },
 
   // ── Footer ──
   copyrightName: "Vihan S Hettiarachchi",
-  footerTagline: "Mechanical Engineer · CEng · DFM / DFA Specialist",
+  footerTagline: "Mechanical Engineer · DFMA ",
   specializations: [
     "DFM / DFA",
     "Automation & Robotics",
